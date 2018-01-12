@@ -59,51 +59,43 @@ function twentyseventeen_setup() {
 	$GLOBALS['content_width'] = 525;
 
 	// This theme uses wp_nav_menu() in two locations.
-	register_nav_menus(
-		array(
-			'top'    => __( 'Top Menu', 'twentyseventeen' ),
-			'social' => __( 'Social Links Menu', 'twentyseventeen' ),
-		)
-	);
+	register_nav_menus( array(
+		'top'    => __( 'Top Menu', 'twentyseventeen' ),
+		'social' => __( 'Social Links Menu', 'twentyseventeen' ),
+	) );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
-	add_theme_support(
-		'html5', array(
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		)
-	);
+	add_theme_support( 'html5', array(
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	) );
 
 	/*
 	 * Enable support for Post Formats.
 	 *
 	 * See: https://codex.wordpress.org/Post_Formats
 	 */
-	add_theme_support(
-		'post-formats', array(
-			'aside',
-			'image',
-			'video',
-			'quote',
-			'link',
-			'gallery',
-			'audio',
-		)
-	);
+	add_theme_support( 'post-formats', array(
+		'aside',
+		'image',
+		'video',
+		'quote',
+		'link',
+		'gallery',
+		'audio',
+	) );
 
 	// Add theme support for Custom Logo.
-	add_theme_support(
-		'custom-logo', array(
-			'width'      => 250,
-			'height'     => 250,
-			'flex-width' => true,
-		)
-	);
+	add_theme_support( 'custom-logo', array(
+		'width'       => 250,
+		'height'      => 250,
+		'flex-width'  => true,
+	) );
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
@@ -111,12 +103,12 @@ function twentyseventeen_setup() {
 	/*
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, and column width.
-	  */
+ 	 */
 	add_editor_style( array( 'assets/css/editor-style.css', twentyseventeen_fonts_url() ) );
 
 	// Define and register starter content to showcase the theme on new sites.
 	$starter_content = array(
-		'widgets'     => array(
+		'widgets' => array(
 			// Place three core-defined widgets in the sidebar area.
 			'sidebar-1' => array(
 				'text_business_info',
@@ -137,15 +129,15 @@ function twentyseventeen_setup() {
 		),
 
 		// Specify the core-defined pages to create and add custom thumbnails to some of them.
-		'posts'       => array(
+		'posts' => array(
 			'home',
-			'about'            => array(
+			'about' => array(
 				'thumbnail' => '{{image-sandwich}}',
 			),
-			'contact'          => array(
+			'contact' => array(
 				'thumbnail' => '{{image-espresso}}',
 			),
-			'blog'             => array(
+			'blog' => array(
 				'thumbnail' => '{{image-coffee}}',
 			),
 			'homepage-section' => array(
@@ -157,27 +149,27 @@ function twentyseventeen_setup() {
 		'attachments' => array(
 			'image-espresso' => array(
 				'post_title' => _x( 'Espresso', 'Theme starter content', 'twentyseventeen' ),
-				'file'       => 'assets/images/espresso.jpg', // URL relative to the template directory.
+				'file' => 'assets/images/espresso.jpg', // URL relative to the template directory.
 			),
 			'image-sandwich' => array(
 				'post_title' => _x( 'Sandwich', 'Theme starter content', 'twentyseventeen' ),
-				'file'       => 'assets/images/sandwich.jpg',
+				'file' => 'assets/images/sandwich.jpg',
 			),
-			'image-coffee'   => array(
+			'image-coffee' => array(
 				'post_title' => _x( 'Coffee', 'Theme starter content', 'twentyseventeen' ),
-				'file'       => 'assets/images/coffee.jpg',
+				'file' => 'assets/images/coffee.jpg',
 			),
 		),
 
 		// Default to a static front page and assign the front and posts pages.
-		'options'     => array(
-			'show_on_front'  => 'page',
-			'page_on_front'  => '{{home}}',
+		'options' => array(
+			'show_on_front' => 'page',
+			'page_on_front' => '{{home}}',
 			'page_for_posts' => '{{blog}}',
 		),
 
 		// Set the front page section theme mods to the IDs of the core-registered pages.
-		'theme_mods'  => array(
+		'theme_mods' => array(
 			'panel_1' => '{{homepage-section}}',
 			'panel_2' => '{{about}}',
 			'panel_3' => '{{blog}}',
@@ -185,10 +177,10 @@ function twentyseventeen_setup() {
 		),
 
 		// Set up nav menus for each of the two areas registered in the theme.
-		'nav_menus'   => array(
+		'nav_menus' => array(
 			// Assign a menu to the "top" location.
-			'top'    => array(
-				'name'  => __( 'Top Menu', 'twentyseventeen' ),
+			'top' => array(
+				'name' => __( 'Top Menu', 'twentyseventeen' ),
 				'items' => array(
 					'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
 					'page_about',
@@ -199,7 +191,7 @@ function twentyseventeen_setup() {
 
 			// Assign a menu to the "social" location.
 			'social' => array(
-				'name'  => __( 'Social Links Menu', 'twentyseventeen' ),
+				'name' => __( 'Social Links Menu', 'twentyseventeen' ),
 				'items' => array(
 					'link_yelp',
 					'link_facebook',
@@ -319,41 +311,35 @@ add_filter( 'wp_resource_hints', 'twentyseventeen_resource_hints', 10, 2 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function twentyseventeen_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => __( 'Blog Sidebar', 'twentyseventeen' ),
-			'id'            => 'sidebar-1',
-			'description'   => __( 'Add widgets here to appear in your sidebar on blog posts and archive pages.', 'twentyseventeen' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+	register_sidebar( array(
+		'name'          => __( 'Blog Sidebar', 'twentyseventeen' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your sidebar on blog posts and archive pages.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 
-	register_sidebar(
-		array(
-			'name'          => __( 'Footer 1', 'twentyseventeen' ),
-			'id'            => 'sidebar-2',
-			'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+	register_sidebar( array(
+		'name'          => __( 'Footer 1', 'twentyseventeen' ),
+		'id'            => 'sidebar-2',
+		'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 
-	register_sidebar(
-		array(
-			'name'          => __( 'Footer 2', 'twentyseventeen' ),
-			'id'            => 'sidebar-3',
-			'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+	register_sidebar( array(
+		'name'          => __( 'Footer 2', 'twentyseventeen' ),
+		'id'            => 'sidebar-3',
+		'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'twentyseventeen_widgets_init' );
 
@@ -371,8 +357,7 @@ function twentyseventeen_excerpt_more( $link ) {
 		return $link;
 	}
 
-	$link = sprintf(
-		'<p class="link-more"><a href="%1$s" class="more-link">%2$s</a></p>',
+	$link = sprintf( '<p class="link-more"><a href="%1$s" class="more-link">%2$s</a></p>',
 		esc_url( get_permalink( get_the_ID() ) ),
 		/* translators: %s: Name of current post */
 		sprintf( __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ), get_the_title( get_the_ID() ) )
@@ -413,17 +398,11 @@ function twentyseventeen_colors_css_wrap() {
 
 	require_once( get_parent_theme_file_path( '/inc/color-patterns.php' ) );
 	$hue = absint( get_theme_mod( 'colorscheme_hue', 250 ) );
-
-	$customize_preview_data_hue = '';
-	if ( is_customize_preview() ) {
-		$customize_preview_data_hue = 'data-hue="' . $hue . '"';
-	}
 ?>
-	<style type="text/css" id="custom-theme-colors" <?php echo $customize_preview_data_hue; ?>>
+	<style type="text/css" id="custom-theme-colors" <?php if ( is_customize_preview() ) { echo 'data-hue="' . $hue . '"'; } ?>>
 		<?php echo twentyseventeen_custom_colors_css(); ?>
 	</style>
-<?php
-}
+<?php }
 add_action( 'wp_head', 'twentyseventeen_colors_css_wrap' );
 
 /**
@@ -458,19 +437,14 @@ function twentyseventeen_scripts() {
 	wp_enqueue_script( 'twentyseventeen-skip-link-focus-fix', get_theme_file_uri( '/assets/js/skip-link-focus-fix.js' ), array(), '1.0', true );
 
 	$twentyseventeen_l10n = array(
-		'quote' => twentyseventeen_get_svg( array( 'icon' => 'quote-right' ) ),
+		'quote'          => twentyseventeen_get_svg( array( 'icon' => 'quote-right' ) ),
 	);
 
 	if ( has_nav_menu( 'top' ) ) {
 		wp_enqueue_script( 'twentyseventeen-navigation', get_theme_file_uri( '/assets/js/navigation.js' ), array( 'jquery' ), '1.0', true );
-		$twentyseventeen_l10n['expand']   = __( 'Expand child menu', 'twentyseventeen' );
-		$twentyseventeen_l10n['collapse'] = __( 'Collapse child menu', 'twentyseventeen' );
-		$twentyseventeen_l10n['icon']     = twentyseventeen_get_svg(
-			array(
-				'icon'     => 'angle-down',
-				'fallback' => true,
-			)
-		);
+		$twentyseventeen_l10n['expand']         = __( 'Expand child menu', 'twentyseventeen' );
+		$twentyseventeen_l10n['collapse']       = __( 'Collapse child menu', 'twentyseventeen' );
+		$twentyseventeen_l10n['icon']           = twentyseventeen_get_svg( array( 'icon' => 'angle-down', 'fallback' => true ) );
 	}
 
 	wp_enqueue_script( 'twentyseventeen-global', get_theme_file_uri( '/assets/js/global.js' ), array( 'jquery' ), '1.0', true );
@@ -505,7 +479,7 @@ function twentyseventeen_content_image_sizes_attr( $sizes, $size ) {
 
 	if ( is_active_sidebar( 'sidebar-1' ) || is_archive() || is_search() || is_home() || is_page() ) {
 		if ( ! ( is_page() && 'one-column' === get_theme_mod( 'page_options' ) ) && 767 <= $width ) {
-			$sizes = '(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px';
+			 $sizes = '(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px';
 		}
 	}
 
@@ -565,7 +539,7 @@ add_filter( 'wp_get_attachment_image_attributes', 'twentyseventeen_post_thumbnai
 function twentyseventeen_front_page_template( $template ) {
 	return is_home() ? '' : $template;
 }
-add_filter( 'frontpage_template', 'twentyseventeen_front_page_template' );
+add_filter( 'frontpage_template',  'twentyseventeen_front_page_template' );
 
 /**
  * Modifies tag cloud widget arguments to display all tags in the same font size
@@ -585,6 +559,294 @@ function twentyseventeen_widget_tag_cloud_args( $args ) {
 	return $args;
 }
 add_filter( 'widget_tag_cloud_args', 'twentyseventeen_widget_tag_cloud_args' );
+
+add_action('init', 'event_register');
+
+function event_register() {
+
+    $labels = array(
+        'name' => _x('Events', 'post type general name'),
+        'singular_name' => _x('Event', 'post type singular name'),
+        'add_new' => _x('Add New', 'event'),
+        'add_new_item' => __('Add New Event'),
+        'edit_item' => __('Edit Event'),
+        'new_item' => __('New Event'),
+        'view_item' => __('View Event'),
+        'search_items' => __('Search Events'),
+        'not_found' =>  __('Nothing found'),
+        'not_found_in_trash' => __('Nothing found in Trash'),
+        'parent_item_colon' => ''
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array('title','editor','thumbnail')
+    );
+
+    register_post_type( 'events' , $args );
+}
+
+add_action("manage_posts_custom_column",  "events_custom_columns");
+add_filter("manage_events_posts_columns", "events_edit_columns");
+
+function events_edit_columns($columns){
+    $columns = array(
+        "cb" => "<input type=\"checkbox\" />",
+        "title" => "Event",
+        "event_date" => "Event Date",
+        "event_location" => "Location",
+        "event_city" => "City",
+    );
+    return $columns;
+}
+
+function events_custom_columns($column){
+    global $post;
+    $custom = get_post_custom();
+
+    switch ($column) {
+        case "event_date":
+            echo format_date($custom["event_date"][0]) . '<br /><em>' .
+                $custom["event_start_time"][0] . ' - ' .
+                $custom["event_end_time"][0] . '</em>';
+            break;
+
+        case "event_location":
+            echo $custom["event_location"][0];
+            break;
+
+        case "event_city":
+            echo $custom["event_city"][0];
+            break;
+    }
+}
+
+add_filter("manage_edit-events_sortable_columns", "event_date_column_register_sortable");
+add_filter("request", "event_date_column_orderby" );
+
+function event_date_column_register_sortable( $columns ) {
+    $columns['event_date'] = 'event_date';
+    return $columns;
+}
+
+function event_date_column_orderby( $vars ) {
+    if ( isset( $vars['orderby'] ) && 'event_date' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'event_date',
+            'orderby' => 'meta_value_num'
+        ) );
+    }
+    return $vars;
+}
+
+add_action("admin_init", "events_admin_init");
+
+function events_admin_init(){
+    add_meta_box("event_meta", "Event Details", "event_details_meta", "events", "normal", "default");
+}
+
+function format_date($data_timestamp){
+    return date('F d, Y', $data_timestamp);
+}
+
+/**
+ *
+ */
+function event_details_meta() {
+
+    $ret = '<p><label>Date: </label><input type="text" name="event_date" value="' .format_date(get_event_field("event_date")) . '" /><em>(mm/dd/yyyy)</em>';
+    $ret = $ret . '</p><p><label>Start Time: </label><input type="text" name="event_start_time" value="' . get_event_field("event_start_time") . '" /><em>(hh:mm pm)</em></p>';
+    $ret = $ret . '<p><label>End Time: </label><input type="text" name="event_end_time" value="' . get_event_field("event_end_time") . '" />    <em>(hh:mm pm)</em> </p>';
+    $ret = $ret . '<p><label>Location: </label><input type="text" size="70" name="event_location" value="' . get_event_field("event_location") . '" /></p>';
+    $ret = $ret . '<p><label>Street: </label><input type="text" size="50" name="event_street" value="' . get_event_field("event_street") . '" /></p>';
+    $ret = $ret . '<p><label>City: </label><input type="text" size="50" name="event_city" value="' . get_event_field("event_city") . '" /></p>';
+    $ret = $ret . '<p><label>Location URL: </label><input type="text" size="70" name="event_location_url" value="' . get_event_field("event_location_url") . '" /></p>';
+    $ret = $ret . '<p><label>Register URL: </label><input type="text" size="70" name="event_register_url" value="' . get_event_field("event_register_url") . '" /></p>';
+
+    echo $ret;
+}
+
+/**
+ * @param $event_field
+ * @return mixed
+ */
+function get_event_field($event_field) {
+    global $post;
+
+    $custom = get_post_custom($post->ID);
+    if (isset($custom[$event_field])) {
+        return $custom[$event_field][0];
+    }
+}
+
+add_action('save_post', 'save_event_details');
+
+function save_event_details(){
+    global $post;
+
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+        return;
+
+    if ( get_post_type($post) == 'event')
+        return;
+
+    if(isset($_POST["event_date"])) {
+        print_r($_POST["event_date"]);
+        update_post_meta($post->ID, "event_date", strtotime($_POST["event_date"]));
+    }
+
+    save_event_field("event_start_time");
+    save_event_field("event_end_time");
+    save_event_field("event_location");
+    save_event_field("event_street");
+    save_event_field("event_city");
+    save_event_field("event_location_url");
+    save_event_field("event_register_url");
+}
+
+function save_event_field($event_field) {
+    global $post;
+
+    if(isset($_POST[$event_field])) {
+        update_post_meta($post->ID, $event_field, $_POST[$event_field]);
+    }
+}
+
+add_shortcode( 'events', 'get_events_shortcode' );
+
+function get_events_shortcode($atts){
+    global $post;
+
+// get shortcode parameter for daterange (can be "current" or "past")
+    extract( shortcode_atts( array(
+        'daterange' => 'current',
+        'max_items' => '5'
+    ), $atts ) );
+
+    ob_start();
+
+// prepare to get a list of events sorted by the event date
+    $args = array(
+        'post_type' => 'events',
+	'orderby'   => 'event_date',
+	'meta_key'  => 'event_date',
+	'order'     => 'ASC'
+    );
+
+    query_posts( $args );
+    
+    $events_found = false;
+
+// build up the HTML from the retrieved list of events
+    if ( have_posts() ) {
+        while ( have_posts() ) {
+            the_post();
+            $event_date = get_post_meta($post->ID, 'event_date', true);
+
+            switch ($daterange) {
+                case "current":
+                    if ($event_date >= time() ) {
+                        echo get_event_container();
+                        $events_found = true;
+                    }
+                    break;
+
+                case "past":
+                    if ($event_date < time() ) {
+                        echo get_past_event_summary();
+                        $events_found = true;
+                    }
+                    break;
+            }
+        }
+    }
+
+    wp_reset_query();
+
+    if (!$events_found) {
+        echo "<p>no events found.</p>";
+    }
+
+    $output_string = ob_get_contents();
+    ob_end_clean();
+
+    return $output_string;
+}
+
+function get_event_container() {
+    global $post;
+    $ret = '<section>';
+    $ret =  $ret . get_event_calendar_icon() . '<section>';
+    $ret = $ret .  get_event_details(false, true);
+    $ret =  $ret . '</section></section>';
+
+    return $ret;
+}
+
+function get_past_event_summary() {
+    global $post;
+    $ret = '<section>';
+    $ret =  $ret . '<h3>' . $post->post_title . '</h3><p>';
+    $ret = $ret . '<h4>' . get_post_meta($post->ID, 'event_city', true) .'</h4>';
+    $ret = $ret .  '<em>' . format_date(get_post_meta($post->ID, 'event_date', true)) . '</em>';
+    $ret =  $ret . '</p></section>';
+
+    return $ret;
+}
+
+function get_event_calendar_icon() {
+    global $post;
+    $unixtime = get_post_meta($post->ID, 'event_date', true);
+    $month = date("M", $unixtime);
+    $day = date("d", $unixtime);
+    $year = date("y", $unixtime);
+    return  '<div>' . $day . '<em>' . $month . '</em></div>';
+}
+
+function get_event_details($include_register_button, $include_title) {
+    global $post;
+    $unixtime = get_post_meta($post->ID, 'event_date', true);
+    $location_url = get_post_meta($post->ID, 'event_location_url', true);
+    $register_url = get_post_meta($post->ID, 'event_register_url', true);
+
+    $ret = '';
+    if ($include_title) {
+        $ret =  $ret . '<h3><a href="' . get_permalink() . '">' . $post->post_title . '</a></h3>';
+    }
+
+    $ret = $ret . '<p><h4>'.get_post_meta($post->ID, 'event_location', true) . '</h4>';
+    $ret = $ret . format_possibly_missing_metadata('event_street');
+    $ret = $ret . format_possibly_missing_metadata('event_city');
+    $ret = $ret . '</p><p>';
+    $ret = $ret . date("F d, Y", $unixtime) . '<br/>';
+    $ret = $ret . '<em>' . get_post_meta($post->ID, 'event_start_time', true) . ' - ';
+    $ret = $ret . get_post_meta($post->ID, 'event_end_time', true) . '</em>';
+
+    if (!empty($register_url) && $include_register_button && $unixtime > time()) {
+        $ret = $ret .'<a href="' . $register_url . '">register</a>';
+    }
+
+    return $ret;
+}
+
+function format_possibly_missing_metadata($field_name) {
+    global $post;
+    $field_value = get_post_meta($post->ID, $field_name, true);
+
+    if (!empty($field_value)) {
+        return $field_value.'<br/>';
+    }
+}
+
+
 
 /**
  * Implement the Custom Header feature.
